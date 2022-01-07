@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Transaction } from "../models/transaction";
+import { IPropsTransactionInput, Transaction } from "../models/transaction";
 import { api } from "../services/api";
 
 const TransactionContext = createContext<Transaction>({} as Transaction);
@@ -14,9 +14,29 @@ const Context: React.FC = ({ children }) => {
       .then((response) => setTransactions(response.data["transactions"]));
   }, []);
 
+  async function createTransaction(transactionInput: IPropsTransactionInput) {
+    const response = await api.post("/transactions", {
+      ...transactionInput,
+      createdAt: new Date(),
+    });
+    const { transaction } = response.data;
+
+    setTransactions([...transactions, transaction]);
+  }
+
+  const removeTransaction = (id: Transaction["id"]) => {
+    setTransactions((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <TransactionContext.Provider
-      value={{ transactionModal, setTransactionModalOpen, transactions }}
+      value={{
+        transactionModal,
+        setTransactionModalOpen,
+        transactions,
+        createTransaction,
+        removeTransaction,
+      }}
     >
       {children}
     </TransactionContext.Provider>

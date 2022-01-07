@@ -8,4 +8,11 @@ export interface Transaction {
   category?: string;
   createdAt?: string;
   transactions: Transaction[];
+  createTransaction: (transaction: IPropsTransactionInput) => Promise<void>;
+  removeTransaction: (id: Transaction["id"]) => void;
 }
+
+export type IPropsTransactionInput = Pick<
+  Transaction,
+  "title" | "amount" | "type" | "category"
+>;

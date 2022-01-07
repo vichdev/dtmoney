@@ -1,9 +1,10 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { useTransaction } from "../../context/context";
 import * as Styles from "./styles";
+import { FaTrashAlt } from "react-icons/fa";
 
 const TransactionTable: React.FC = () => {
-  const { transactions } = useTransaction();
+  const { transactions, removeTransaction } = useTransaction();
 
   return (
     <Styles.Container>
@@ -41,6 +42,11 @@ const TransactionTable: React.FC = () => {
                 {new Intl.DateTimeFormat("pr-BR").format(
                   new Date(transaction.createdAt as string)
                 )}
+              </Styles.TableContent>
+              <Styles.TableContent>
+                <FaTrashAlt
+                  onClick={() => removeTransaction(transaction.id!)}
+                />
               </Styles.TableContent>
             </Styles.TableContainer>
           ))}

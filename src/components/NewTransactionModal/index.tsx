@@ -5,20 +5,30 @@ import { IPropsModal } from "./types";
 import closeImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
-import { api } from "../../services/api";
 
 const NewTransactionModal: React.FC<IPropsModal> = () => {
   const [title, setTitle] = useState<string>();
-  const [value, setValue] = useState<number>();
+  const [amount, setAmount] = useState<number>();
   const [category, setCategory] = useState<string>();
-  const { transactionModal, setTransactionModalOpen } = useTransaction();
+  const { transactionModal, setTransactionModalOpen, createTransaction } =
+    useTransaction();
   const [type, setType] = useState<string>();
 
-  function handleCreateNewTransaction(event: FormEvent) {
+  async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
-    const data = { category, value, title, type };
 
-    api.post("/transactions", data);
+    await createTransaction({
+      title,
+      amount,
+      type,
+      category,
+    });
+    setTitle("");
+    setAmount(0);
+    setCategory("");
+    setType("deposit");
+
+    setTransactionModalOpen(!transactionModal);
   }
 
   return (
@@ -39,8 +49,8 @@ const NewTransactionModal: React.FC<IPropsModal> = () => {
         <Styles.ModalInputs
           type="text"
           placeholder="R$00,00"
-          value={value}
-          onChange={(event) => setValue(Number(event.target.value))}
+          value={amount}
+          onChange={(event) => setAmount(Number(event.target.value))}
         />
         <Styles.ButtonTypeWrapper>
           <Styles.TransactionButton
