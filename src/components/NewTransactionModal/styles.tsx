@@ -17,6 +17,11 @@ export const ModalWrapper = styled.div<{ isOpen?: boolean }>`
   display: ${(props) => (props.isOpen ? "flex" : "none")};
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) and (min-width: 300px) {
+    overflow-y: hidden;
+    position: fixed;
+  }
 `;
 
 export const Modal = styled.form`
@@ -33,6 +38,13 @@ export const Modal = styled.form`
   animation-name: ${OpenModalAnimation};
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
+
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 300px;
+    height: 300px;
+    overflow-y: hidden;
+    position: fixed;
+  }
 `;
 
 export const ModalTitle = styled.h2`
@@ -54,13 +66,15 @@ export const ModalInputs = styled.input`
   &::placeholder {
     color: var(--text-body);
   }
-
   &:focus {
     border-color: #121212;
   }
-
   & + input {
     margin-top: 1rem;
+  }
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 100%;
+    height: 300px;
   }
 `;
 
@@ -78,6 +92,10 @@ export const ButtonSubmit = styled.button`
 
   &:hover {
     filter: brightness(0.9);
+  }
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 100%;
+    height: 300px;
   }
 `;
 
@@ -141,5 +159,15 @@ export const TransactionButton = styled.button<{
     margin-left: 1rem;
     font-size: 1rem;
     color: var(--text-title);
+  }
+
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 100%;
+    height: 40px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;

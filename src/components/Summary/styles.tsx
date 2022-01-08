@@ -5,6 +5,11 @@ export const Containter = styled.main`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: -10rem;
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const SummaryWrapper = styled.div<{
@@ -15,6 +20,10 @@ export const SummaryWrapper = styled.div<{
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
   color: ${(props) => (props.textcolor ? props.textcolor : "#363F5F")};
+  @media (max-width: 768px) and (min-width: 768px) {
+    padding: 1rem 1rem;
+    width: 100%;
+  }
 `;
 
 export const SummaryHeader = styled.header`

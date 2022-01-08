@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { useTransaction } from "../../context/context";
 import * as Styles from "./styles";
 import { FaTrashAlt } from "react-icons/fa";

@@ -10,6 +10,21 @@ export const Header = styled.header`
   padding: 2rem 2rem 12rem;
   align-items: center;
   justify-content: space-between;
+
+  svg {
+    display: none;
+  }
+
+  @media (max-width: 600px) and (min-width: 300px) {
+    width: 100%;
+    justify-content: space-around;
+
+    svg {
+      display: block;
+      color: #fff;
+      font-size: 2rem;
+    }
+  }
 `;
 
 export const LogoImg = styled.img``;
@@ -27,5 +42,9 @@ export const HeaderButton = styled.button`
 
   &:hover {
     filter: brightness(0.9);
+  }
+
+  @media (max-width: 600px) and (min-width: 300px) {
+    display: none;
   }
 `;
