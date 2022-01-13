@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createServer, Model } from "miragejs";
+import { makeServer } from "./server";
+
+makeServer({ environment: "development" });
 
 createServer({
   models: {
