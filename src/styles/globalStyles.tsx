@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-body{
+body {
   font: 400 14px Roboto, sans-serif;
   background: var(--background);
   @media (max-width: 1080px) {
@@ -50,4 +50,5 @@ textarea {
 button, svg {
   cursor: pointer;
 }
+
 `;
